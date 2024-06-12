@@ -47,12 +47,12 @@ void vstavka(struct z*,char*, int);
 int main(array<System::String ^> ^args)  
 {  
  char dan[6][55]={  
-  "Против какой команды Ливерпуль забил максимум голов?  ",  
-  "Сколько Ливерпуль забил против <Введите команду>?     ",  
-  "Алфавитный список противников и забитых ими мячей     ",  
-  "Диаграмма: процент забитых голов                      ",  
-  "Две ненулевые ничьи с одинаковым счетом               ",    
-  "Выход                                                 "  
+  "РџСЂРѕС‚РёРІ РєР°РєРѕР№ РєРѕРјР°РЅРґС‹ Р›РёРІРµСЂРїСѓР»СЊ Р·Р°Р±РёР» РјР°РєСЃРёРјСѓРј РіРѕР»РѕРІ?  ",  
+  "РЎРєРѕР»СЊРєРѕ Р›РёРІРµСЂРїСѓР»СЊ Р·Р°Р±РёР» РїСЂРѕС‚РёРІ <Р’РІРµРґРёС‚Рµ РєРѕРјР°РЅРґСѓ>?     ",  
+  "РђР»С„Р°РІРёС‚РЅС‹Р№ СЃРїРёСЃРѕРє РїСЂРѕС‚РёРІРЅРёРєРѕРІ Рё Р·Р°Р±РёС‚С‹С… РёРјРё РјСЏС‡РµР№     ",  
+  "Р”РёР°РіСЂР°РјРјР°: РїСЂРѕС†РµРЅС‚ Р·Р°Р±РёС‚С‹С… РіРѕР»РѕРІ                      ",  
+  "Р”РІРµ РЅРµРЅСѓР»РµРІС‹Рµ РЅРёС‡СЊРё СЃ РѕРґРёРЅР°РєРѕРІС‹Рј СЃС‡РµС‚РѕРј               ",    
+  "Р’С‹С…РѕРґ                                                 "  
   };  
  char BlankLine[ ]="                                                        ";
  int NM;
@@ -65,7 +65,7 @@ int main(array<System::String ^> ^args)
  Console::BufferWidth=Console::WindowWidth;  
 	if((in=fopen("table_data","r"))==NULL)  
 		{  
-		printf("\nФайл table_data.dat  не открыт !");  
+		printf("\nР¤Р°Р№Р» table_data.dat  РЅРµ РѕС‚РєСЂС‹С‚ !");  
 		getch(); exit(1);  
 		}  
  fscanf(in,"%d",&NM);  
@@ -119,12 +119,12 @@ getch();
 int menu(int n)  
 {  
   char dan[6][55]={  
-  "Против какой команды Ливерпуль забил максимум голов?  ",  
-  "Сколько Ливерпуль забил против <Введите команду>?     ",  
-  "Алфавитный список противников и забитых ими мячей     ",  
-  "Диаграмма: процент забитых голов                      ",  
-  "Две ненулевые ничьи с одинаковым счетом               ",    
-  "Выход                                                 "  
+  "РџСЂРѕС‚РёРІ РєР°РєРѕР№ РєРѕРјР°РЅРґС‹ Р›РёРІРµСЂРїСѓР»СЊ Р·Р°Р±РёР» РјР°РєСЃРёРјСѓРј РіРѕР»РѕРІ?  ",  
+  "РЎРєРѕР»СЊРєРѕ Р›РёРІРµСЂРїСѓР»СЊ Р·Р°Р±РёР» РїСЂРѕС‚РёРІ <Р’РІРµРґРёС‚Рµ РєРѕРјР°РЅРґСѓ>?     ",  
+  "РђР»С„Р°РІРёС‚РЅС‹Р№ СЃРїРёСЃРѕРє РїСЂРѕС‚РёРІРЅРёРєРѕРІ Рё Р·Р°Р±РёС‚С‹С… РёРјРё РјСЏС‡РµР№     ",  
+  "Р”РёР°РіСЂР°РјРјР°: РїСЂРѕС†РµРЅС‚ Р·Р°Р±РёС‚С‹С… РіРѕР»РѕРІ                      ",  
+  "Р”РІРµ РЅРµРЅСѓР»РµРІС‹Рµ РЅРёС‡СЊРё СЃ РѕРґРёРЅР°РєРѕРІС‹Рј СЃС‡РµС‚РѕРј               ",    
+  "Р’С‹С…РѕРґ                                                 "  
   };  
  char BlankLine[ ]="                                                        ";
 int y1=0,y2=n-1;  
@@ -170,10 +170,10 @@ Console::ForegroundColor=ConsoleColor::White;
 Console::BackgroundColor=ConsoleColor::Red;  
 Console::CursorLeft=10;  
 Console::CursorTop=17;  
-printf("Максимальное кол-во голов %d   ",best.liv_score);  
+printf("РњР°РєСЃРёРјР°Р»СЊРЅРѕРµ РєРѕР»-РІРѕ РіРѕР»РѕРІ %d   ",best.liv_score);  
 Console::CursorLeft=10;  
 Console::CursorTop=18;  
-printf("против команды %s",best.enemy);  
+printf("РїСЂРѕС‚РёРІ РєРѕРјР°РЅРґС‹ %s",best.enemy);  
 getch();  
 }  
 void vstavka(struct z* match,char* team, int NM) 
@@ -204,7 +204,7 @@ void goals(struct z* match, int NM)
  Console::CursorTop=17;
  Console::ForegroundColor=ConsoleColor::White;  
 Console::BackgroundColor=ConsoleColor::Red; 
- Console::WriteLine(L"Введите команду:");  
+ Console::WriteLine(L"Р’РІРµРґРёС‚Рµ РєРѕРјР°РЅРґСѓ:");  
  SetConsoleCP(1251);  
  Console::CursorLeft=10;  
  Console::CursorTop=18;  
@@ -219,10 +219,10 @@ Console::ForegroundColor=ConsoleColor::White;
 Console::BackgroundColor=ConsoleColor::Red;  
 Console::CursorLeft=30;  
 Console::CursorTop=17;  
-printf("Против команды %s",team);  
+printf("РџСЂРѕС‚РёРІ РєРѕРјР°РЅРґС‹ %s",team);  
 Console::CursorLeft=30;  
 Console::CursorTop=18;  
-printf("Ливерпуль забил %d голов",g);  
+printf("Р›РёРІРµСЂРїСѓР»СЊ Р·Р°Р±РёР» %d РіРѕР»РѕРІ",g);  
 getch();  
 } 
 void diagram(struct z *match, int NM) 
@@ -272,7 +272,7 @@ if(!spisok)
 for(i=0;i<NM;i++) 
 vstavka(match,match[i].enemy, NM); 
 Console::Clear(); 
-printf("\n\t\t Алфавитный список противников и обратный"); 
+printf("\n\t\t РђР»С„Р°РІРёС‚РЅС‹Р№ СЃРїРёСЃРѕРє РїСЂРѕС‚РёРІРЅРёРєРѕРІ Рё РѕР±СЂР°С‚РЅС‹Р№"); 
 printf("\n =======================================================================\n"); 
 for(nt=spisok; nt!=0; nt=nt->sled) 
 printf("\n %-20s %ld",nt->team,nt->en_score); 
@@ -312,7 +312,7 @@ void same(struct z* match, int NM) {
 	if (flag == 1){
  Console::CursorLeft=10;  
  Console::CursorTop=17;  
- printf("Против команд:");
+ printf("РџСЂРѕС‚РёРІ РєРѕРјР°РЅРґ:");
     Console::CursorLeft=30;  
  Console::CursorTop=17;
     printf("%s\n", q);
@@ -323,7 +323,7 @@ printf("%s\n", w); }
 if (flag == 0)
 {  Console::CursorLeft=10;  
  Console::CursorTop=17;
- printf("В исходном файле нет двух матчей с одинаковыми ничьими");
+ printf("Р’ РёСЃС…РѕРґРЅРѕРј С„Р°Р№Р»Рµ РЅРµС‚ РґРІСѓС… РјР°С‚С‡РµР№ СЃ РѕРґРёРЅР°РєРѕРІС‹РјРё РЅРёС‡СЊРёРјРё");
  getch();
 }
 }
