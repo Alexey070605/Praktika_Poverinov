@@ -178,23 +178,23 @@ getch();
 }  
 void vstavka(struct z* match,char* team, int NM) 
 { 
-int i; 
-struct sp *nov,*nt,*z=0; 
-for(nt=spisok; nt!=0 && strcmp(nt->team,team)<0; z=nt, nt=nt->sled); 
-if(nt && strcmp(nt->team,team)==0) return; 
-nov=(struct sp *) malloc(sizeof(struct sp)); 
-strcpy(nov->team,team); 
-nov->sled=nt;
-nov->pred=z;
-nov->en_score=0; 
-for(i=0;i<NM;i++) 
-if(strcmp(match[i].enemy,team)==0) 
-nov->en_score+=match[i].en_score; 
-if(!z) spisok=nov; 
-else z->sled=nov; 
- if(nt) nt->pred=nov;
-  nov->sled = nt;
-return; 
+	int i; 
+	struct sp *nov,*nt,*z=0; 
+		for(nt=spisok; nt!=0 && strcmp(nt->team,team)<0; z=nt, nt=nt->sled); 
+			if(nt && strcmp(nt->team,team)==0) return; 
+				nov=(struct sp *) malloc(sizeof(struct sp)); 
+				strcpy(nov->team,team); 
+				nov->sled=nt;
+				nov->pred=z;
+				nov->en_score=0; 
+		for(i=0;i<NM;i++) 
+			if(strcmp(match[i].enemy,team)==0) 
+				nov->en_score+=match[i].en_score; 
+				if(!z) spisok=nov; 
+				else z->sled=nov; 
+			if(nt) nt->pred=nov;
+			  nov->sled = nt;
+	return; 
 } 
 void goals(struct z* match, int NM)  
 {  
@@ -211,10 +211,10 @@ Console::BackgroundColor=ConsoleColor::Red;
  scanf("%s", team);  
  SetConsoleCP(866);  
  for(i=1;i<NM;i++)  
-  if (strcmp(team,match[i].enemy)==0)  
-   {  
-    g = match[i].liv_score;  
-   }  
+	if (strcmp(team,match[i].enemy)==0)  
+	   {  
+		g = match[i].liv_score;  
+	   }  
 Console::ForegroundColor=ConsoleColor::White;  
 Console::BackgroundColor=ConsoleColor::Red;  
 Console::CursorLeft=30;  
@@ -236,27 +236,27 @@ System::ConsoleColor Color;
 Console::ForegroundColor=ConsoleColor::Black; 
 Console::BackgroundColor=ConsoleColor::White; 
 Console::Clear(); 
-for(i=0;i<NM;i++) sum = sum+match[i].en_score ; 
-if(!spisok) 
-for(i=0;i<NM;i++) 
-vstavka(match,match[i].enemy, NM); 
-Color=ConsoleColor::Black; NColor=0; 
-for(nt=spisok,i=0; nt!=0; nt=nt->sled,i++) 
-{ 
-sprintf(str1,"%s",nt->team); 
-sprintf(str2,"%3.1f%%",(nt->en_score*100./sum)); 
-Console::ForegroundColor=ConsoleColor::Black; 
-Console::BackgroundColor= ConsoleColor::White; 
-Console::CursorLeft=5; Console::CursorTop=i+1; 
-printf(str1); 
-Console::CursorLeft=20; 
-printf("%s",str2); 
-Console::BackgroundColor=++Color; NColor++; 
-Console::CursorLeft=30; 
-for(len=0; len<nt->en_score*100/sum; len++) printf(" "); 
-if(NColor==14) 
-{ Color=ConsoleColor::Black; NColor=0; } 
-} 
+	for(i=0;i<NM;i++) sum = sum+match[i].en_score ; 
+		if(!spisok) 
+			for(i=0;i<NM;i++) 
+			vstavka(match,match[i].enemy, NM); 
+			Color=ConsoleColor::Black; NColor=0; 
+	for(nt=spisok,i=0; nt!=0; nt=nt->sled,i++) 
+		{ 
+		sprintf(str1,"%s",nt->team); 
+		sprintf(str2,"%3.1f%%",(nt->en_score*100./sum)); 
+		Console::ForegroundColor=ConsoleColor::Black; 
+		Console::BackgroundColor= ConsoleColor::White; 
+		Console::CursorLeft=5; Console::CursorTop=i+1; 
+		printf(str1); 
+		Console::CursorLeft=20; 
+		printf("%s",str2); 
+		Console::BackgroundColor=++Color; NColor++; 
+		Console::CursorLeft=30; 
+			for(len=0; len<nt->en_score*100/sum; len++) printf(" "); 
+				if(NColor==14) 
+					{ Color=ConsoleColor::Black; NColor=0; } 
+		} 
 getch(); 
 return ; 
 } 
@@ -268,22 +268,22 @@ struct sp* z;
 Console::ForegroundColor=ConsoleColor::Red; 
 Console::BackgroundColor=ConsoleColor::White; 
 Console::Clear(); 
-if(!spisok) 
-for(i=0;i<NM;i++) 
-vstavka(match,match[i].enemy, NM); 
-Console::Clear(); 
-printf("\n\t\t Алфавитный список противников и обратный"); 
-printf("\n =======================================================================\n"); 
-for(nt=spisok; nt!=0; nt=nt->sled) 
-printf("\n %-20s %ld",nt->team,nt->en_score); 
- for (nt = spisok, z=0; nt != 0; z=nt, nt = nt->sled);
-    for(nt=z; nt!=0; nt=nt->pred)
-    {  
-    Console::CursorLeft=48;
-    Console::CursorTop=4+n;
-        printf(" %-20s %ld", nt->team, nt->en_score);
-    n+=1;
-    }
+	if(!spisok) 
+		for(i=0;i<NM;i++) 
+			vstavka(match,match[i].enemy, NM); 
+			Console::Clear(); 
+			printf("\n\t\t Алфавитный список противников и обратный"); 
+			printf("\n =======================================================================\n"); 
+	for(nt=spisok; nt!=0; nt=nt->sled) 
+		printf("\n %-20s %ld",nt->team,nt->en_score); 
+	for (nt = spisok, z=0; nt != 0; z=nt, nt = nt->sled);
+		for(nt=z; nt!=0; nt=nt->pred)
+			{  
+			Console::CursorLeft=48;
+			Console::CursorTop=4+n;
+				printf(" %-20s %ld", nt->team, nt->en_score);
+			n+=1;
+			}
     getch();
 }
 void same(struct z* match, int NM) {
