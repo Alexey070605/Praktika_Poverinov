@@ -35,13 +35,13 @@ struct sp {
  int en_score; 
  struct sp* sled;
  struct sp* pred;
-} *spisok; 
+} ; 
 int menu(int);  
 void maxim(struct z*, int);  
 void goals(struct z*, int);  
-void vstavka(struct z*,char*, int); 
- void diagram(struct z*, int); 
- void alfalist(struct z*, int); 
+void vstavka(struct z*,char*, int, struct sp**); 
+ void diagram(struct z*, int, struct sp**); 
+ void alfalist(struct z*, int, struct sp**); 
  void same(struct z*, int);
   
 int main(array<System::String ^> ^args)  
@@ -105,11 +105,12 @@ getch();
   printf(BlankLine);  
   n = menu(6);  
   
+  struct sp* spisok = 0;
   switch(n) {  
     case 1: maxim(match, NM);break;  
     case 2: goals(match, NM); break;  
-    case 3: alfalist(match, NM); break;  
-    case 4: diagram(match, NM); break;  
+    case 3: alfalist(match, NM, &spisok); break;  
+    case 4: diagram(match, NM, &spisok); break;  
     case 5: same(match, NM); break;  
     case 6: ; exit(0);   
     }  
@@ -176,11 +177,11 @@ Console::CursorTop=18;
 printf("против команды %s",best.enemy);  
 getch();  
 }  
-void vstavka(struct z* match,char* team, int NM) 
+void vstavka(struct z* match,char* team, int NM, struct sp**spisok) 
 { 
 	int i; 
 	struct sp *nov,*nt,*z=0; 
-		for(nt=spisok; nt!=0 && strcmp(nt->team,team)<0; z=nt, nt=nt->sled); 
+		for(nt=*spisok; nt!=0 && strcmp(nt->team,team)<0; z=nt, nt=nt->sled); 
 			if(nt && strcmp(nt->team,team)==0) return; 
 				nov=(struct sp *) malloc(sizeof(struct sp)); 
 				strcpy(nov->team,team); 
@@ -190,7 +191,7 @@ void vstavka(struct z* match,char* team, int NM)
 		for(i=0;i<NM;i++) 
 			if(strcmp(match[i].enemy,team)==0) 
 				nov->en_score+=match[i].en_score; 
-				if(!z) spisok=nov; 
+				if(!z) *spisok=nov; 
 				else z->sled=nov; 
 			if(nt) nt->pred=nov;
 			  nov->sled = nt;
@@ -225,7 +226,7 @@ Console::CursorTop=18;
 printf("Ливерпуль забил %d голов",g);  
 getch();  
 } 
-void diagram(struct z *match, int NM) 
+void diagram(struct z *match, int NM, struct sp**spisok) 
 { 
 struct sp *nt; 
 int len,i,NColor; 
@@ -237,11 +238,11 @@ Console::ForegroundColor=ConsoleColor::Black;
 Console::BackgroundColor=ConsoleColor::White; 
 Console::Clear(); 
 	for(i=0;i<NM;i++) sum = sum+match[i].en_score ; 
-		if(!spisok) 
+		if(!*spisok) 
 			for(i=0;i<NM;i++) 
-			vstavka(match,match[i].enemy, NM); 
+			vstavka(match,match[i].enemy, NM, spisok); 
 			Color=ConsoleColor::Black; NColor=0; 
-	for(nt=spisok,i=0; nt!=0; nt=nt->sled,i++) 
+	for(nt=*spisok,i=0; nt!=0; nt=nt->sled,i++) 
 		{ 
 		sprintf(str1,"%s",nt->team); 
 		sprintf(str2,"%3.1f%%",(nt->en_score*100./sum)); 
@@ -260,7 +261,7 @@ Console::Clear();
 getch(); 
 return ; 
 } 
-void alfalist(struct z* match, int NM) 
+void alfalist(struct z* match, int NM, struct sp**spisok) 
 { 
 int i, n=0; 
 struct sp* nt; 
@@ -268,15 +269,15 @@ struct sp* z;
 Console::ForegroundColor=ConsoleColor::Red; 
 Console::BackgroundColor=ConsoleColor::White; 
 Console::Clear(); 
-	if(!spisok) 
+	if(!*spisok) 
 		for(i=0;i<NM;i++) 
-			vstavka(match,match[i].enemy, NM); 
+			vstavka(match,match[i].enemy, NM, spisok); 
 			Console::Clear(); 
 			printf("\n\t\t Алфавитный список противников и обратный"); 
 			printf("\n =======================================================================\n"); 
-	for(nt=spisok; nt!=0; nt=nt->sled) 
+	for(nt=*spisok; nt!=0; nt=nt->sled) 
 		printf("\n %-20s %ld",nt->team,nt->en_score); 
-	for (nt = spisok, z=0; nt != 0; z=nt, nt = nt->sled);
+	for (nt = *spisok, z=0; nt != 0; z=nt, nt = nt->sled);
 		for(nt=z; nt!=0; nt=nt->pred)
 			{  
 			Console::CursorLeft=48;
